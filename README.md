@@ -106,7 +106,7 @@ jupyter lab
 
 ```bash
 cd src
-conda create --name myenv -f environment.yml
+conda env create --name myenv -f environment.yml
 ```
 
 #### NOTE: 
