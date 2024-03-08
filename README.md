@@ -17,7 +17,7 @@ This project uses a conda environment to manage dependencies. To set up the envi
    Navigate to the project directory and run the following command to create a conda environment from the `environment.yml` file:
 
 ```bash
-conda env create -f environment.yml
+conda env --name myenv create -f environment.yml
 ```
 
 3. **Activate the Environment**:
