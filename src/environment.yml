@@ -27,4 +27,5 @@ dependencies:
   - tensorflow
   - diffusers
   - transformers
+  - python-dotenv
 prefix: /home/martin/Downloads/yes/envs/encode

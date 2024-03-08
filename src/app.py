@@ -1,9 +1,14 @@
+import os
 import tensorflow as tf
 import tkinter as tk
 import customtkinter as ctk
 
 from PIL import ImageTk
 from authtoken import auth_token
+from dotenv import load_dotenv
+
+load_dotenv()
+auth_token = os.getenv('AUTH_TOKEN_STABILITY_AI')
 
 import torch
 from torch import autocast
