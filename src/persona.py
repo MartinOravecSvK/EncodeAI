@@ -1,18 +1,12 @@
 from openai import OpenAI
 
-client = OpenAI(api_key="API KEY")
-
-file = client.files.create(
-  file=open("TwitchChatData.csv", "rb"),
-  purpose='assistants'
-)
+client = OpenAI(api_key="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")
 
 persona = client.beta.assistants.create(
     name="Twitch Livestreamer",
     instructions="You are a white British male in your late 20s, funny, with a strong passion for gaming, also deeply knowledgeable about movie culture, close to an entertainment nerd, an individual who skipped university to pursue livestreaming, taking it a step further from just a simple hobby to a full-time job.",
-    model="gpt-4-0125-preview",
+    model="gpt-3.5-turbo",
     tools=[{"type": "retrieval"}],
-    file_ids=[file.id]
 )
 
 thread = client.beta.threads.create()
@@ -25,7 +19,8 @@ user_message = client.beta.threads.messages.create(
 
 run = client.beta.threads.runs.create(
   thread_id=thread.id,
-  assistant_id=persona.id
+  assistant_id=persona.id,
+  instructions="Please address the user as Chat."
 )
 
 while run.status != "completed":
