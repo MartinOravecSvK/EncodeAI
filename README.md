@@ -4,7 +4,7 @@
 <summary><b>Working with the Conda Environment</b> (click to expand)</summary>
 <br>
 
-## Setting Up the Conda Environment
+## Setting Up the Conda Environment`
 
 This project uses a conda environment to manage dependencies. To set up the environment on your local machine, follow these steps:
 
