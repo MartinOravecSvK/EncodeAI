@@ -46,4 +46,4 @@ persona_messages = client.beta.threads.messages.list(
 
 print("###################################################### \n")
 print(f"USER: {user_message.content[0].text.value}")
-print(f"ASSISTANT: {persona_messages.data[0].content[0].text.value}")
+print(f"PERSONA: {persona_messages.data[0].content[0].text.value}")
