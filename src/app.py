@@ -4,7 +4,6 @@ import tkinter as tk
 import customtkinter as ctk
 
 from PIL import ImageTk
-from authtoken import auth_token
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -30,7 +29,6 @@ lmain.place(x=10, y=110)
 modelid = "CompVis/stable-diffusion-v1-4"
 
 device = 'cuda' if tf.config.list_physical_devices('GPU') else 'cpu'
-# device = "cuda"
 
 pipe = StableDiffusionPipeline.from_pretrained(modelid, revision="fp16", torch_dtype=torch.float32, use_auth_token=auth_token)
 pipe.to(device)
