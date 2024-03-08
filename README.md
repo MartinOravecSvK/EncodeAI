@@ -99,3 +99,24 @@ jupyter lab
 ```
 
 </details>
+
+### Running the program
+
+1. **Create Conda environment**
+
+```bash
+cd src
+conda create --name myenv -f environment.yml
+```
+
+#### NOTE: 
+
+Change myenv for the name you want.
+
+2. Create .env
+
+Create .env and change the placeholders for your keys/tokens
+
+```bash
+AUTH_TOKEN_STABILITY_AI='Your Stability AI token'
+```
