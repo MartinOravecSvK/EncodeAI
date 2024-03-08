@@ -1,3 +1,4 @@
+import tensorflow as tf
 import tkinter as tk
 import customtkinter as ctk
 
@@ -22,8 +23,11 @@ lmain = ctk.CTkLabel(master=app, height=512, width=512)
 lmain.place(x=10, y=110)
 
 modelid = "CompVis/stable-diffusion-v1-4"
-device = "cuda"
-pipe = StableDiffusionPipeline.from_pretrained(modelid, revision="fp16", torch_dtype=torch.float16, use_auth_token=auth_token)
+
+device = 'cuda' if tf.config.list_physical_devices('GPU') else 'cpu'
+# device = "cuda"
+
+pipe = StableDiffusionPipeline.from_pretrained(modelid, revision="fp16", torch_dtype=torch.float32, use_auth_token=auth_token)
 pipe.to(device)
 
 def generate():
