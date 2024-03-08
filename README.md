@@ -147,5 +147,16 @@ TWITCH_CLIENT_ID='YOUR TWITCH CLIENT ID'
 
 2. **Setup TWITCH_OAUTH_TOKEN**
 
+Connect using [link](https://twitchapps.com/tmi/), this will prompt you to connect oauth with twitch. It will then generate OAUTH token. It will look something like this:
 
+```bash
+oauth::YOUR-TOKEN
+```
 
+After you obtain the OAUTH token, put it inside the.env file.
+
+```bash
+---rest of the file---
+TWITCH_OAUTH_TOKEN='YOUR TWITCH OAUTH TOKEN'
+---rest of the file---
+```
