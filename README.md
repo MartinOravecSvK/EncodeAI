@@ -167,3 +167,30 @@ Check your oauth token and also the relevant client id with the following comman
 curl -X GET 'https://id.twitch.tv/oauth2/validate' \
 -H 'Authorization: OAuth <replace with your oauth token>'
 ```
+
+## Setting up EleventLabs API
+
+1. **Install elevenlabs through pip**
+
+There isn't a way to install the elevenlabs package through conda so just intall it into conda with its appropriate pip.
+
+```bash
+echo $CONDA_PREFIX
+[YOUR PREFIX]/bin/pip(3) install elevenlabs
+```
+
+#### NOTE: 
+It may be pip or pip3
+
+2. **Add ELEVEN_API_KEY to .env**
+
+```bash
+---rest of the file---
+ELEVEN_API_KEY='YOUR  ELEVEN LABS API KEY'
+---rest of the file---
+```
+
+3. **Installing ffmpeg**
+
+(Need to add the actual instructions...)
+Follow instructions [here]()
