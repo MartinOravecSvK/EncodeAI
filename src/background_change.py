@@ -11,7 +11,7 @@ load_dotenv()
 
 img_prompt = "A British male in his late twenties wearing gamer fashion and is really into movie culture on a live stream face cam speaking to a microphone"
 
-bg_prompt = "A slightly messy room of a British male in his late twenties gamer who is into movies"
+bg_prompt = "A clear image of slightly messy big room of a guy in his late twenties who is into movies and video games thats from a far"
 
 image = Image.open(f"./out/{img_prompt.replace(' ','_')}.png")
 
@@ -32,8 +32,7 @@ r = requests.post('https://clipdrop-api.co/replace-background/v1',
 )
 
 if (r.ok):
-    output = base64.b64decode(r.content)
     with open(f"./out/{img_prompt.replace(' ','_')}_with_bg.png", "wb") as img_file:
-        img_file.write(output)
+        img_file.write(r.content)
 else:
   r.raise_for_status()
