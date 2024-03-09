@@ -207,3 +207,12 @@ TWITCH_BOT_NAME='auroraencodeai'
 TWITCH_BOT_PREFIX='!'
 TWITCH_CHANNEL = '#auroraencodeai'
 ```
+
+Our Twitch account details (Will be deleted after hackathon!)
+
+```bash
+username: AuroraEncodeAI
+password: L"-?J;A6dvNV*-e
+```
+
+For app verification dm/ask Martin
