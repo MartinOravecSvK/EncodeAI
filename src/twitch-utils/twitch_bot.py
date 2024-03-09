@@ -1,4 +1,5 @@
 import os
+import emoji
 from twitchio.ext import commands
 from dotenv import load_dotenv
 
@@ -26,7 +27,7 @@ class Bot(commands.Bot):
         # Runs whenever a message is sent in chat
         print(f'Message from {message.author.name}: {message.content}')
 
-        self.chat_log_file.write(f'{message.author.name}: {message.content}\n')
+        self.chat_log_file.write(f"{message.author.name}: " + emoji.demojize(message.content) + '\n')
         self.chat_log_file.flush()
 
         await self.handle_commands(message)
