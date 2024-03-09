@@ -26,6 +26,7 @@ def texttospeech(text,
             )
         )
     )
+    
     play(audio)
 
 if __name__ == "__main__":
