@@ -1,27 +1,16 @@
 import openai
 
-openai.api_key = "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"
-
-# def ask_gpt(prompt: str) -> str:
-#     response = openai.chat.completions.create(
-#         engine = "gpt-3.5-turbo",
-#         prompt = prompt,
-#         max_tokens = 4000,
-#         temperature=0.5,
-#         frequency_penalty=0,
-#         presence_penalty=0,
-#     )
-#     return response.choices[0].text.strip()
+openai.api_key = "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"
 
 def ask_gpt(prompt: str) -> str:
-    chat_log = [{"role": "system", "content": "You are a helpful assistant."},
+    chat_log = [{"role": "system", "content": "You are a white British male in your late 20s, funny, with a strong passion for gaming, also deeply knowledgeable about movie culture, close to an entertainment nerd, an individual who skipped university to pursue livestreaming, taking it a step further from just a simple hobby to a full-time job. Read and react to the user chat informally and with a sense of humor."},
                 {"role": "user", "content": prompt}]
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=chat_log,
         max_tokens=150,
     )
-    return response['choices'][0]['message']['content']
+    return response.choices[0].message.content 
 
 def main() -> None:
     
