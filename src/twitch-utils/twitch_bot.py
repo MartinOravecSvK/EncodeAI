@@ -1,6 +1,7 @@
 import os
 from twitchio.ext import commands
 from dotenv import load_dotenv
+
 load_dotenv()
 
 OAUTH_TOKEN = os.getenv('TWITCH_OAUTH_TOKEN')
@@ -30,7 +31,9 @@ class Bot(commands.Bot):
 
         await self.handle_commands(message)
 
-# Load the bot with the access token (make sure to replace 'your_access_token_here' with your actual access token)
-# You can obtain the token from the Twitch Token Generator website or through the Twitch developer console
-bot = Bot()
-bot.run()
+def run_bot():
+    bot = Bot()
+    bot.run()
+
+if __name__ == '__main__':
+    run_bot()
