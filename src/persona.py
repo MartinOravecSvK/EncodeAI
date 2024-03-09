@@ -28,9 +28,9 @@ def process_chat_log(chat_log_content):
     chat_msgs = chat_log_content.strip().split('/n')
     for msg in chat_msgs:
         user, content = msg.split(':', 1)
-        prompt = f"User: {content}"
+        prompt = content
         response = ask_gpt(prompt)
-        print(f"User: {content}\nAurora: {response}\n")
+        print(f"{msg}\nAurora: {response}\n")
 
 
 def main() -> None:
@@ -39,7 +39,7 @@ def main() -> None:
     while True:
         chat_log_content = read_chat_log(chat_log_file)
         process_chat_log(chat_log_content)
-        time.sleep(60)
+        time.sleep(10)
 
 if __name__ == "__main__":
     main()
