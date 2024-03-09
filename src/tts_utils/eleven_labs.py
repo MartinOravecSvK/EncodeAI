@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
-from elevenlabs import Voice, VoiceSettings, generate, play
+from elevenlabs import Voice, VoiceSettings, generate
+import winsound
+import time
 
 load_dotenv()
 ELEVEN_API_KEY = os.getenv("ELEVEN_API_KEY")
@@ -27,14 +29,17 @@ def texttospeech(text,
             )
         )
     )
-    
-    # play(audio)
+
+    timestamp = int(time.time())
+    output_filename = f"output_{timestamp}.wav"
 
     # Creates an output mp3 file
     with open(output_filename, "wb") as file:  # Open file in write-binary mode
         file.write(audio)  # Write the audio data to the file
 
     print(f"Audio saved to {output_filename}")
+    
+    winsound.PlaySound(output_filename, winsound.SND_FILENAME)
 
 if __name__ == "__main__":
     text = "Born and raised in the charming south, I can add a touch of sweet southern hospitality to your audiobooks and podcasts"
