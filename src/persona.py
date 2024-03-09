@@ -3,10 +3,13 @@ import os
 import time
 from dotenv import load_dotenv
 import emoji
+import playsound
+from tts_utils.eleven_labs import texttospeech
 
 load_dotenv()
 
 api_key = os.getenv("OPENAI_API_KEY")
+
 
 def ask_gpt(prompt: str) -> str:
     chat_log = [{"role": "system", "content": "You are a white British male in your late 20s, funny, with a strong passion for gaming, also deeply knowledgeable about movie culture, close to an entertainment nerd, an individual who skipped university to pursue livestreaming, taking it a step further from just a simple hobby to a full-time job. Read and react to the user chat informally and with a sense of humor."},
@@ -34,9 +37,12 @@ def process_chat_log(chat_log_content):
 
         user, content = latest_msg.split(':', 1)
         prompt = content
-        response = ask_gpt(prompt)
+        response = emoji.demojize(ask_gpt(prompt))
         print(f"{latest_msg}\nAurora: {response}\n")
-        f.write(emoji.demojize(response))
+        
+        texttospeech(response)
+        playsound.playsound('output.mp3')
+        f.write(response)
         f.close()
 
 

@@ -1,7 +1,7 @@
 import requests
 
 # Set your API key 
-api_key = '54dbfb5a93494c7b309d27a43cb0e9cd'
+api_key = '4fab2d5d7f5ddec9ff9422c2da442613'
 
 CHUNK_SIZE = 1024
 
