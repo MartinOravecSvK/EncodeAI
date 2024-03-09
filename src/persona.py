@@ -1,44 +1,45 @@
-from openai import OpenAI
+import openai
 
-client = OpenAI(api_key="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")
+openai.api_key = "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"
 
-persona = client.beta.assistants.create(
-    name="Twitch Livestreamer",
-    instructions="You are a white British male in your late 20s, funny, with a strong passion for gaming, also deeply knowledgeable about movie culture, close to an entertainment nerd, an individual who skipped university to pursue livestreaming, taking it a step further from just a simple hobby to a full-time job.",
-    model="gpt-3.5-turbo",
-    tools=[{"type": "retrieval"}],
-)
+# def ask_gpt(prompt: str) -> str:
+#     response = openai.chat.completions.create(
+#         engine = "gpt-3.5-turbo",
+#         prompt = prompt,
+#         max_tokens = 4000,
+#         temperature=0.5,
+#         frequency_penalty=0,
+#         presence_penalty=0,
+#     )
+#     return response.choices[0].text.strip()
 
-thread = client.beta.threads.create()
-
-user_message = client.beta.threads.messages.create(
-    thread_id=thread.id,
-    role="user",
-    content="Hey, Aurora! The vibe here is so chill, exactly what I needed today. Loving the stream so far, how's your day going? How far are you aiming to get into the game today? This looks awesome! How long have you been playing this game? Do you have any tips for anyone starting out?",
-)
-
-run = client.beta.threads.runs.create(
-  thread_id=thread.id,
-  assistant_id=persona.id,
-  instructions="Please address the user as Chat."
-)
-
-while run.status != "completed":
-    keep_retrieving_run = client.beta.threads.runs.retrieve(
-        thread_id=thread.id,
-        run_id=run.id
+def ask_gpt(prompt: str) -> str:
+    chat_log = [{"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}]
+    response = openai.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=chat_log,
+        max_tokens=150,
     )
+    return response['choices'][0]['message']['content']
 
-    print(f"Run status: {keep_retrieving_run.status}")
+def main() -> None:
+    
+    print("This is Aurora speaking! Type 'quit' if I have triggered you too much.")
+    user_input = ""
+    chat_history = ""
 
-    if keep_retrieving_run.status == "completed":
-        print("\n")
-        break
+    while user_input.lower() != "quit":
+        user_input = input("Chat: ")
+        if user_input.lower() == "quit":
+            break
+        prompt = f"{chat_history}Chat: {user_input}\nAurora: "
+        response = ask_gpt(prompt)
+        print("Aurora:", response)
+        chat_history += f"Chat: {user_input}\nAurora: {response}\n"
 
-persona_messages = client.beta.threads.messages.list(
-    thread_id=thread.id
-)
+    with open("chat_history.txt", "w", encoding="utf-8") as file:
+        file.write(chat_history)
 
-print("###################################################### \n")
-print(f"USER: {user_message.content[0].text.value}")
-print(f"PERSONA: {persona_messages.data[0].content[0].text.value}")
+if __name__ == "__main__":
+    main()
