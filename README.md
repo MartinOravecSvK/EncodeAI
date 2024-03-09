@@ -160,3 +160,10 @@ After you obtain the OAUTH token, put it inside the.env file.
 TWITCH_OAUTH_TOKEN='YOUR TWITCH OAUTH TOKEN'
 ---rest of the file---
 ```
+
+Check your oauth token and also the relevant client id with the following command:
+
+```bash
+curl -X GET 'https://id.twitch.tv/oauth2/validate' \
+-H 'Authorization: OAuth <replace with your oauth token>'
+```
