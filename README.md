@@ -199,7 +199,7 @@ Follow instructions [here]()
 
 .env   
 ```bash
-OPENAI_API_KEY='OUR OPEN AI API KEY'
+OPENAI_API_KEY="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"
 ELEVEN_API_KEY='4fab2d5d7f5ddec9ff9422c2da442613'
 T_CLIENT_ID='h92ugsewcdxsggcjs7t0lee6uiey84'
 TWITCH_OAUTH_TOKEN='oauth:xy8beq6ubgunfjbpgvb1e7bfsb7uxu'
