@@ -14,6 +14,7 @@ class Bot(commands.Bot):
         # Initialize the Bot with our access token and desired prefix
         super().__init__(token=OAUTH_TOKEN, prefix=BOT_PREFIX,
                          initial_channels=[CHANNEL])
+        self.chat_log_file = open('chat.log', 'a', encoding='utf-8')
 
     async def event_ready(self):
         # Called once when the bot goes online
@@ -23,6 +24,10 @@ class Bot(commands.Bot):
     async def event_message(self, message):
         # Runs whenever a message is sent in chat
         print(f'Message from {message.author.name}: {message.content}')
+
+        self.chat_log_file.write(f'{message.author.name}: {message.content}\n')
+        self.chat_log_file.flush()
+
         await self.handle_commands(message)
 
 # Load the bot with the access token (make sure to replace 'your_access_token_here' with your actual access token)
