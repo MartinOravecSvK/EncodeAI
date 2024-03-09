@@ -39,7 +39,6 @@ def process_chat_log(chat_log_content):
         f.close()
 
 def main() -> None:
-    
     chat_log_file = 'chat.log'
     while True:
         chat_log_content = read_chat_log(chat_log_file)
