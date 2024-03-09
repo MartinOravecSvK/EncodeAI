@@ -30,4 +30,6 @@ dependencies:
   - python-dotenv
   - openai
   - emoji
+  - deepface
+  - dlib
 prefix: /home/martin/Downloads/yes/envs/encode
