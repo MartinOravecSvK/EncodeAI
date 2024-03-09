@@ -4,7 +4,7 @@
 <summary><b>Working with the Conda Environment</b> (click to expand)</summary>
 <br>
 
-## Setting Up the Conda Environment
+## Setting Up the Conda Environment`
 
 This project uses a conda environment to manage dependencies. To set up the environment on your local machine, follow these steps:
 
@@ -119,4 +119,51 @@ Create .env and change the placeholders for your keys/tokens
 
 ```bash
 AUTH_TOKEN_STABILITY_AI='Your Stability AI token'
+```
+
+
+## Setting up Twitch API 
+
+First to use the code you need to install `irc` using pip. Locate the pip of your conda environment and use the specific pip.
+
+```bash
+conda activate myenv
+echo $CONDA_PREFIX
+[YOUR PREFIX]/bin/pip(3) install irc
+```
+#### NOTE: 
+It may be pip or pip3
+
+1. **Setup TWITCH_CLIENT_ID**
+Useful [reference](https://dev.twitch.tv/docs/authentication/register-app/)
+
+After you obtain TWITCH_CLIENT_ID, put it inside the .env file.
+
+```bash
+---rest of the file---
+TWITCH_CLIENT_ID='YOUR TWITCH CLIENT ID'
+---rest of the file---
+```
+
+2. **Setup TWITCH_OAUTH_TOKEN**
+
+Connect using [link](https://twitchapps.com/tmi/), this will prompt you to connect oauth with twitch. It will then generate OAUTH token. It will look something like this:
+
+```bash
+oauth::YOUR-TOKEN
+```
+
+After you obtain the OAUTH token, put it inside the.env file.
+
+```bash
+---rest of the file---
+TWITCH_OAUTH_TOKEN='YOUR TWITCH OAUTH TOKEN'
+---rest of the file---
+```
+
+Check your oauth token and also the relevant client id with the following command:
+
+```bash
+curl -X GET 'https://id.twitch.tv/oauth2/validate' \
+-H 'Authorization: OAuth <replace with your oauth token>'
 ```
