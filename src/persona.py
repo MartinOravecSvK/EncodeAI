@@ -1,49 +1,53 @@
-import os
 import openai
+import os 
+import time
 from dotenv import load_dotenv
+import emoji
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# def ask_gpt(prompt: str) -> str:
-#     response = openai.chat.completions.create(
-#         engine = "gpt-3.5-turbo",
-#         prompt = prompt,
-#         max_tokens = 4000,
-#         temperature=0.5,
-#         frequency_penalty=0,
-#         presence_penalty=0,
-#     )
-#     return response.choices[0].text.strip()
+api_key = os.getenv("OPENAI_API_KEY")
 
 def ask_gpt(prompt: str) -> str:
-    # change this for the entire hisotry of the chat
-    chat_log = [{"role": "system", "content": "You are a helpful assistant."},
+    chat_log = [{"role": "system", "content": "You are a white British male in your late 20s, funny, with a strong passion for gaming, also deeply knowledgeable about movie culture, close to an entertainment nerd, an individual who skipped university to pursue livestreaming, taking it a step further from just a simple hobby to a full-time job. Read and react to the user chat informally and with a sense of humor."},
                 {"role": "user", "content": prompt}]
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=chat_log,
-        max_tokens=100,
+        max_tokens=150,
     )
-    return response['choices'][0]['message']['content']
+    return response.choices[0].message.content 
 
-def main():
-    
-    print("This is Aurora speaking! Type 'quit' if I have triggered you too much.")
-    user_input = ""
-    chat_history = ""
 
-    while user_input.lower() != "quit":
-        user_input = input("Chat: ")
-        if user_input.lower() == "quit":
-            break
-        prompt = f"{chat_history}Chat: {user_input}\nAurora: "
+def read_chat_log(chat_log_file):
+    with open(chat_log_file, "r", encoding="utf-8") as file:
+        chat_log_content = file.read()
+    return chat_log_content
+
+
+def process_chat_log(chat_log_content):
+    chat_msgs = chat_log_content.strip().split('\n')
+    f = open("persona_latest_response.txt", "w")
+
+    if chat_msgs:
+        latest_msg = chat_msgs[-1]
+
+        user, content = latest_msg.split(':', 1)
+        prompt = content
         response = ask_gpt(prompt)
-        print("Aurora:", response)
-        chat_history += f"Chat: {user_input}\nAurora: {response}\n"
+        print(f"{latest_msg}\nAurora: {response}\n")
+        f.write(emoji.demojize(response))
+        f.close()
 
-    with open("chat_history.txt", "w", encoding="utf-8") as file:
-        file.write(chat_history)
+
+
+def main() -> None:
+    
+    chat_log_file = 'chat.log'
+    while True:
+        chat_log_content = read_chat_log(chat_log_file)
+        process_chat_log(chat_log_content)
+        time.sleep(10)
 
 if __name__ == "__main__":
     main()
