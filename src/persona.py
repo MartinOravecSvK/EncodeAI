@@ -2,6 +2,7 @@ import openai
 import os 
 import time
 from dotenv import load_dotenv
+import emoji
 
 load_dotenv()
 
@@ -25,12 +26,19 @@ def read_chat_log(chat_log_file):
 
 
 def process_chat_log(chat_log_content):
-    chat_msgs = chat_log_content.strip().split('/n')
-    for msg in chat_msgs:
-        user, content = msg.split(':', 1)
+    chat_msgs = chat_log_content.strip().split('\n')
+    f = open("persona_latest_response.txt", "w")
+
+    if chat_msgs:
+        latest_msg = chat_msgs[-1]
+
+        user, content = latest_msg.split(':', 1)
         prompt = content
         response = ask_gpt(prompt)
-        print(f"{msg}\nAurora: {response}\n")
+        print(f"{latest_msg}\nAurora: {response}\n")
+        f.write(emoji.demojize(response))
+        f.close()
+
 
 
 def main() -> None:
