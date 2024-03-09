@@ -15,7 +15,7 @@ def ask_gpt(prompt: str) -> str:
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=chat_log,
-        max_tokens=150,
+        max_tokens=50,
     )
     return response.choices[0].message.content 
 
