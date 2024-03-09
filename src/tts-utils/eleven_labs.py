@@ -30,6 +30,19 @@ def texttospeech(text,
     
     # play(audio)
 
+    import os
+
+    # Specify the file path
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Construct the full file path
+    file_path = os.path.join(script_dir, output_filename)
+
+    # Check if the file exists
+    if os.path.exists(file_path):
+        # If it exists, delete the file
+        os.remove(file_path)
+
     # Creates an output mp3 file
     with open(output_filename, "wb") as file:  # Open file in write-binary mode
         file.write(audio)  # Write the audio data to the file
