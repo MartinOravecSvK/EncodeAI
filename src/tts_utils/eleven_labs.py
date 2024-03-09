@@ -8,7 +8,7 @@ load_dotenv()
 ELEVEN_API_KEY = os.getenv("ELEVEN_API_KEY")
 
 def texttospeech(text, 
-                 voice_id='CYw3kZ02Hs0563khs1Fj', 
+                 voice_id='CYw3kZ02Hs0563khs1Fj', #Dave Voice ID
                  stability=0.71, 
                  similarity_boost=0.5, 
                  style=0.0, 
