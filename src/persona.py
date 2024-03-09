@@ -40,7 +40,6 @@ def process_chat_log(chat_log_content):
         print(f"{latest_msg}\nAurora: {response}\n")
         
         texttospeech(response)
-        playsound.playsound('output.mp3')
         f.write(response)
         f.close()
 
