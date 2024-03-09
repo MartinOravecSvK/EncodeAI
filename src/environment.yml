@@ -28,4 +28,6 @@ dependencies:
   - diffusers
   - transformers
   - python-dotenv
+  - openai
+  - emoji
 prefix: /home/martin/Downloads/yes/envs/encode
