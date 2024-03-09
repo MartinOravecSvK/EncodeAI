@@ -1,24 +1,30 @@
 import openai
-import os 
-from dotenv import load_dotenv
+import time
+import os
 
-load_dotenv()
-
-api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = "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"
 
 def ask_gpt(prompt: str) -> str:
-    chat_log = [{"role": "system", "content": "You are a white British male in your late 20s, funny, with a strong passion for gaming, also deeply knowledgeable about movie culture, close to an entertainment nerd, an individual who skipped university to pursue livestreaming, taking it a step further from just a simple hobby to a full-time job. Read and react to the user chat informally and with a sense of humor."},
+    chat_log = [{"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}]
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=chat_log,
         max_tokens=150,
     )
-    return response.choices[0].message.content 
+    return response['choices'][0]['message']['content']
+
+def read_chat_log(chat_log_file):
+    with open(chat_log_file, "r", encoding="utf-8") as file:
+        chat_log_content = file.read()
+    return chat_log_content
+
+def process_chat_log(chat_log_content):
+    chat_msgs = chat_log_content.strip().split('/n')
 
 def main() -> None:
     
-    print("This is Aurora speaking! Type 'quit' if I have triggered you too much...!")
+    print("This is Aurora speaking! Type 'quit' if I have triggered you too much.")
     user_input = ""
     chat_history = ""
 
