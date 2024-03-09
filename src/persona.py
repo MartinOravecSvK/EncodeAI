@@ -1,5 +1,6 @@
 import openai
 import os 
+import time
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,31 +17,29 @@ def ask_gpt(prompt: str) -> str:
     )
     return response.choices[0].message.content 
 
+
 def read_chat_log(chat_log_file):
     with open(chat_log_file, "r", encoding="utf-8") as file:
         chat_log_content = file.read()
     return chat_log_content
 
+
 def process_chat_log(chat_log_content):
     chat_msgs = chat_log_content.strip().split('/n')
+    for msg in chat_msgs:
+        user, content = msg.split(':', 1)
+        prompt = f"User: {content}"
+        response = ask_gpt(prompt)
+        print(f"User: {content}\nAurora: {response}\n")
+
 
 def main() -> None:
     
-    print("This is Aurora speaking! Type 'quit' if I have triggered you too much...!")
-    user_input = ""
-    chat_history = ""
-
-    while user_input.lower() != "quit":
-        user_input = input("Chat: ")
-        if user_input.lower() == "quit":
-            break
-        prompt = f"{chat_history}Chat: {user_input}\nAurora: "
-        response = ask_gpt(prompt)
-        print("Aurora:", response)
-        chat_history += f"Chat: {user_input}\nAurora: {response}\n"
-
-    with open("chat_history.txt", "w", encoding="utf-8") as file:
-        file.write(chat_history)
+    chat_log_file = 'chat.log'
+    while True:
+        chat_log_content = read_chat_log(chat_log_file)
+        process_chat_log(chat_log_content)
+        time.sleep(60)
 
 if __name__ == "__main__":
     main()
