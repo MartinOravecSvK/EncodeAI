@@ -216,3 +216,5 @@ password: L"-?J;A6dvNV*-e
 ```
 
 For app verification dm/ask Martin
+
+If you want to just put something in its chat use this [link](https://www.twitch.tv/auroraencodeai)
