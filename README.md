@@ -192,3 +192,5 @@ ELEVEN_API_KEY='YOUR  ELEVEN LABS API KEY'
 
 3. **Installing ffmpeg**
 
+(Need to add the actual instructions...)
+Follow instructions [here]()
