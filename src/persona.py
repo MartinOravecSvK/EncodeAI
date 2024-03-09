@@ -3,7 +3,6 @@ import os
 import time
 from dotenv import load_dotenv
 import emoji
-import playsound
 from tts_utils.eleven_labs import texttospeech
 
 load_dotenv()
