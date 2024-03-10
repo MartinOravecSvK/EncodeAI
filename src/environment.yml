@@ -1,0 +1,33 @@
+name: encode
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - beautifulsoup4
+  - coverage
+  - django
+  - flask
+  - jupyter
+  - keras
+  - matplotlib
+  - notebook
+  - numpy
+  - opencv
+  - pandas
+  - pillow
+  - plotly
+  - pytest
+  - pytorch
+  - requests
+  - scikit-learn
+  - scipy
+  - seaborn
+  - sqlalchemy
+  - tensorflow
+  - diffusers
+  - transformers
+  - python-dotenv
+  - openai
+  - emoji
+prefix: /home/martin/Downloads/yes/envs/encode
