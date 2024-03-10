@@ -12,8 +12,8 @@ api_key = os.getenv("STABILITY_API_KEY")
 
 img_prompt = "A British male in his late twenties wearing gamer fashion and is really into movie culture on a live stream face cam speaking to a microphone"
 
-emotion_prompts=[("Make him angry","angry"),("Make him have a neutral expression","neutral"),("Make him sad","sad"),("Make him laugh","laughing"),("Make him confused","confused"),("Make him cringe","cringing"),("Make him excited","excited"),("Make him shocked","shocked")]
-
+##emotion_prompts=[("Make him angry","angry"),("Make him have a neutral expression","neutral"),("Make him sad","sad"),("Make him laugh","laughing"),("Make him confused","confused"),("Make him cringe","cringing"),("Make him excited","excited"),("Make him shocked","shocked")]
+emotion_prompts=[("Make him angry","angry")]
 if api_key is None:
     raise Exception("Missing Stability API key.")
 
@@ -42,6 +42,8 @@ for i in emotion_prompts:
         raise Exception("Non-200 response: " + str(response.text))
 
     data = response.json()
+
+    print(data["artifacts"][0].keys())
 
     for j, image in enumerate(data["artifacts"]):
         with open(f"./out/{i[1]}_guy.png", "wb") as f:

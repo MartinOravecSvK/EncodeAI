@@ -28,4 +28,6 @@ dependencies:
   - diffusers
   - transformers
   - python-dotenv
+  - moviepy
+  - plms
 prefix: /home/martin/Downloads/yes/envs/encode
