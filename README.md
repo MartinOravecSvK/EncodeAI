@@ -194,3 +194,27 @@ ELEVEN_API_KEY='YOUR  ELEVEN LABS API KEY'
 
 (Need to add the actual instructions...)
 Follow instructions [here]()
+
+# FOR TESTING
+
+.env   
+```bash
+OPENAI_API_KEY="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"
+ELEVEN_API_KEY='4fab2d5d7f5ddec9ff9422c2da442613'
+T_CLIENT_ID='h92ugsewcdxsggcjs7t0lee6uiey84'
+TWITCH_OAUTH_TOKEN='oauth:xy8beq6ubgunfjbpgvb1e7bfsb7uxu'
+TWITCH_BOT_NAME='auroraencodeai'
+TWITCH_BOT_PREFIX='!'
+TWITCH_CHANNEL = '#auroraencodeai'
+```
+
+Our Twitch account details (Will be deleted after hackathon!)
+
+```bash
+username: AuroraEncodeAI
+password: L"-?J;A6dvNV*-e
+```
+
+For app verification dm/ask Martin
+
+If you want to just put something in its chat use this [link](https://www.twitch.tv/auroraencodeai)
