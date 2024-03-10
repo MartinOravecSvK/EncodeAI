@@ -30,8 +30,6 @@ def texttospeech(text,
     
     # play(audio)
 
-    import os
-
     # Specify the file path
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
