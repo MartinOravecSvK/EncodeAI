@@ -48,15 +48,16 @@ def process_chat_log(chat_log_content):
     chat_msgs = chat_log_content.strip().split('\n')
     f = open("persona_latest_response.txt", "w")
 
-    if chat_msgs:
-        latest_msg = chat_msgs[-1]
+    #for msg in chat_msgs:
+    
+    #user, content = msg.split(':', 1)
+    
+    prompt = chat_msgs
+    response = ask_gpt(prompt)
 
-        user, content = latest_msg.split(':', 1)
-        prompt = content
-        response = ask_gpt(prompt)
-        print(f"{latest_msg}\nAurora: {response}\n")
-        f.write(emoji.demojize(response))
-        f.close()
+    print(f"{chat_msgs}\nAurora: {response}\n")
+    f.write(emoji.demojize(response))
+    f.close()
 
 
 
@@ -74,18 +75,18 @@ def main() -> None:
         f = open("persona_latest_response.txt", "r")
         response = f.read()
         f.close()
-        texttospeech(response, voice_id='CYw3kZ02Hs0563khs1Fj', stability=0.71, similarity_boost=0.5, style=0.0, use_speaker_boost=True)
+        texttospeech(response, voice_id='EXAVITQu4vr4xnSDxMaL', stability=0.71, similarity_boost=0.5, style=0.0, use_speaker_boost=True)
         
         play_audio()
         
         time.sleep(10)
-        # return
+        return
 
 if __name__ == "__main__":
     # Run main in a separate thread
     thread = threading.Thread(target=main)
     thread.start()
-    # main()
+    main()
     # Run chat bot in main thread
     bot = Bot(token=OAUTH_TOKEN, prefix=BOT_PREFIX, initial_channels=[CHANNEL])
     bot.run()
