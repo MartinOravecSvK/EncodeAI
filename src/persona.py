@@ -54,8 +54,8 @@ def process_chat_log(chat_log_content):
     
     #user, content = msg.split(':', 1)
     
-    # prompt = chat_msgs
-    prompt = "\n".join(chat_msgs)
+    msgs_to_prompt = 5
+    prompt = "\n".join(chat_msgs[min(msgs_to_prompt, len(chat_msgs) - 1):])
     # prompt = chat_msgs[-1]
     response = ask_gpt(prompt)
 
