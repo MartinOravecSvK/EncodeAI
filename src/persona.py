@@ -34,6 +34,8 @@ def ask_gpt(prompt: str) -> str:
         max_tokens=150,
     )
 
+    print(response)
+    # return "Hello"
     return response.choices[0].message.content 
     # return "HELLO I AM VERY TIRED"
 
@@ -52,7 +54,9 @@ def process_chat_log(chat_log_content):
     
     #user, content = msg.split(':', 1)
     
-    prompt = chat_msgs
+    # prompt = chat_msgs
+    prompt = "\n".join(chat_msgs)
+    # prompt = chat_msgs[-1]
     response = ask_gpt(prompt)
 
     print(f"{chat_msgs}\nAurora: {response}\n")
@@ -86,7 +90,7 @@ if __name__ == "__main__":
     # Run main in a separate thread
     thread = threading.Thread(target=main)
     thread.start()
-    main()
+    # main()
     # Run chat bot in main thread
     bot = Bot(token=OAUTH_TOKEN, prefix=BOT_PREFIX, initial_channels=[CHANNEL])
     bot.run()
