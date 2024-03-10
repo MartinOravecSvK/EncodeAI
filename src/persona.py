@@ -3,10 +3,17 @@ import os
 import time
 from dotenv import load_dotenv
 import emoji
+import threading
+from twitch_utils.twitch_bot import Bot
 
 load_dotenv()
 
 api_key = os.getenv("OPENAI_API_KEY")
+
+OAUTH_TOKEN = os.getenv('TWITCH_OAUTH_TOKEN')
+CHANNEL = os.getenv('TWITCH_CHANNEL')
+BOT_NAME = os.getenv('TWITCH_BOT_NAME')
+BOT_PREFIX = os.getenv('TWITCH_BOT_PREFIX')
 
 def ask_gpt(prompt: str) -> str:
     chat_log = [{"role": "system", "content": "You are a white British male in your late 20s, funny, with a strong passion for gaming, also deeply knowledgeable about movie culture, close to an entertainment nerd, an individual who skipped university to pursue livestreaming, taking it a step further from just a simple hobby to a full-time job. Read and react to the user chat informally and with a sense of humor."},
@@ -50,4 +57,10 @@ def main() -> None:
         time.sleep(10)
 
 if __name__ == "__main__":
-    main()
+    # Run main in a separate thread
+    thread = threading.Thread(target=main)
+    thread.start()
+
+    # Run chat bot in main thread
+    # bot = Bot(token=OAUTH_TOKEN, prefix=BOT_PREFIX, initial_channels=[CHANNEL])
+    # bot.run()
