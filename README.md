@@ -1,4 +1,12 @@
-# EncodeAI
+# EncodeAI 2024 Hackathon Submission - Aurora-Ignite
+
+## Code Overview
+
+OpenAI bot:
+"persona.py" implements our instance of OpenAI, which reacts to the chat logs collected from the Twitch account, and connects with the text-to-speech implemented in /tts_utils
+
+Stability AI:
+
 
 <details>
 <summary><b>Working with the Conda Environment</b> (click to expand)</summary>
@@ -168,11 +176,23 @@ curl -X GET 'https://id.twitch.tv/oauth2/validate' \
 -H 'Authorization: OAuth <replace with your oauth token>'
 ```
 
-## Setting up EleventLabs API
+## Setting up OpenAI API
+
+1. Install openai through pip
+
+2. Add OPENAI_API_KEY to .env
+
+```bash
+---rest of the file---
+OPENAI='YOUR OPENAI API KEY'
+---rest of the file---
+```
+
+## Setting up ElevenLabs API
 
 1. **Install elevenlabs through pip**
 
-There isn't a way to install the elevenlabs package through conda so just intall it into conda with its appropriate pip.
+There isn't a way to install the elevenlabs package through conda so just install it into conda with its appropriate pip.
 
 ```bash
 echo $CONDA_PREFIX
@@ -193,28 +213,6 @@ ELEVEN_API_KEY='YOUR  ELEVEN LABS API KEY'
 3. **Installing ffmpeg**
 
 (Need to add the actual instructions...)
-Follow instructions [here]()
-
-# FOR TESTING
-
-.env   
-```bash
-OPENAI_API_KEY="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"
-ELEVEN_API_KEY='4fab2d5d7f5ddec9ff9422c2da442613'
-T_CLIENT_ID='h92ugsewcdxsggcjs7t0lee6uiey84'
-TWITCH_OAUTH_TOKEN='oauth:xy8beq6ubgunfjbpgvb1e7bfsb7uxu'
-TWITCH_BOT_NAME='auroraencodeai'
-TWITCH_BOT_PREFIX='!'
-TWITCH_CHANNEL = '#auroraencodeai'
-```
-
-Our Twitch account details (Will be deleted after hackathon!)
-
-```bash
-username: AuroraEncodeAI
-password: L"-?J;A6dvNV*-e
-```
-
-For app verification dm/ask Martin
+Follow instructions [here](https://www.geeksforgeeks.org/how-to-install-ffmpeg-on-windows/)
 
 If you want to just put something in its chat use this [link](https://www.twitch.tv/auroraencodeai)

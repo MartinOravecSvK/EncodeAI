@@ -31,12 +31,11 @@ def ask_gpt(prompt: str) -> str:
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=chat_log,
-        max_tokens=150,
+        max_tokens=50,
     )
 
     return response.choices[0].message.content 
     # return "HELLO I AM VERY TIRED"
-
 
 def read_chat_log(chat_log_file):
     with open(chat_log_file, "r", encoding="utf-8") as file:
@@ -86,7 +85,7 @@ if __name__ == "__main__":
     # Run main in a separate thread
     thread = threading.Thread(target=main)
     thread.start()
-    main()
+    #main()
     # Run chat bot in main thread
     bot = Bot(token=OAUTH_TOKEN, prefix=BOT_PREFIX, initial_channels=[CHANNEL])
     bot.run()
