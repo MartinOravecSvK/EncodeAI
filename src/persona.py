@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # Run main in a separate thread
     thread = threading.Thread(target=main)
     thread.start()
-
+    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
     # Run chat bot in main thread
     # bot = Bot(token=OAUTH_TOKEN, prefix=BOT_PREFIX, initial_channels=[CHANNEL])
     # bot.run()
