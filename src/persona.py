@@ -1,4 +1,5 @@
 import openai
+# from openai import OpenAI
 import os 
 import time
 from dotenv import load_dotenv
@@ -18,11 +19,13 @@ BOT_PREFIX = os.getenv('TWITCH_BOT_PREFIX')
 def ask_gpt(prompt: str) -> str:
     chat_log = [{"role": "system", "content": "You are a white British male in your late 20s, funny, with a strong passion for gaming, also deeply knowledgeable about movie culture, close to an entertainment nerd, an individual who skipped university to pursue livestreaming, taking it a step further from just a simple hobby to a full-time job. Read and react to the user chat informally and with a sense of humor."},
                 {"role": "user", "content": prompt}]
+    
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=chat_log,
         max_tokens=150,
     )
+
     return response.choices[0].message.content 
 
 
@@ -49,7 +52,10 @@ def process_chat_log(chat_log_content):
 
 
 def main() -> None:
-    
+    # openai.api_key = api_key
+    # client = OpenAI(api_key=api_key)
+    # openai.api_key = api_key
+    # print(api_key)
     chat_log_file = 'chat.log'
     while True:
         chat_log_content = read_chat_log(chat_log_file)
