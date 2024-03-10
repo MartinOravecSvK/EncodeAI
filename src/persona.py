@@ -55,6 +55,7 @@ def main() -> None:
         chat_log_content = read_chat_log(chat_log_file)
         process_chat_log(chat_log_content)
         time.sleep(10)
+        print("Checking chat log...")
 
 if __name__ == "__main__":
     # Run main in a separate thread
