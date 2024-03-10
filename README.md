@@ -4,7 +4,7 @@
 <summary><b>Working with the Conda Environment</b> (click to expand)</summary>
 <br>
 
-## Setting Up the Conda Environment
+## Setting Up the Conda Environment`
 
 This project uses a conda environment to manage dependencies. To set up the environment on your local machine, follow these steps:
 
@@ -17,7 +17,7 @@ This project uses a conda environment to manage dependencies. To set up the envi
    Navigate to the project directory and run the following command to create a conda environment from the `environment.yml` file:
 
 ```bash
-conda env create --name myenv -f environment.yml
+conda env --name myenv create -f environment.yml
 ```
 
 3. **Activate the Environment**:
@@ -106,7 +106,7 @@ jupyter lab
 
 ```bash
 cd src
-conda create --name myenv -f environment.yml
+conda env create --name myenv -f environment.yml
 ```
 
 #### NOTE: 
@@ -120,3 +120,101 @@ Create .env and change the placeholders for your keys/tokens
 ```bash
 AUTH_TOKEN_STABILITY_AI='Your Stability AI token'
 ```
+
+
+## Setting up Twitch API 
+
+First to use the code you need to install `irc` using pip. Locate the pip of your conda environment and use the specific pip.
+
+```bash
+conda activate myenv
+echo $CONDA_PREFIX
+[YOUR PREFIX]/bin/pip(3) install irc
+```
+#### NOTE: 
+It may be pip or pip3
+
+1. **Setup TWITCH_CLIENT_ID**
+Useful [reference](https://dev.twitch.tv/docs/authentication/register-app/)
+
+After you obtain TWITCH_CLIENT_ID, put it inside the .env file.
+
+```bash
+---rest of the file---
+TWITCH_CLIENT_ID='YOUR TWITCH CLIENT ID'
+---rest of the file---
+```
+
+2. **Setup TWITCH_OAUTH_TOKEN**
+
+Connect using [link](https://twitchapps.com/tmi/), this will prompt you to connect oauth with twitch. It will then generate OAUTH token. It will look something like this:
+
+```bash
+oauth::YOUR-TOKEN
+```
+
+After you obtain the OAUTH token, put it inside the.env file.
+
+```bash
+---rest of the file---
+TWITCH_OAUTH_TOKEN='YOUR TWITCH OAUTH TOKEN'
+---rest of the file---
+```
+
+Check your oauth token and also the relevant client id with the following command:
+
+```bash
+curl -X GET 'https://id.twitch.tv/oauth2/validate' \
+-H 'Authorization: OAuth <replace with your oauth token>'
+```
+
+## Setting up EleventLabs API
+
+1. **Install elevenlabs through pip**
+
+There isn't a way to install the elevenlabs package through conda so just intall it into conda with its appropriate pip.
+
+```bash
+echo $CONDA_PREFIX
+[YOUR PREFIX]/bin/pip(3) install elevenlabs
+```
+
+#### NOTE: 
+It may be pip or pip3
+
+2. **Add ELEVEN_API_KEY to .env**
+
+```bash
+---rest of the file---
+ELEVEN_API_KEY='YOUR  ELEVEN LABS API KEY'
+---rest of the file---
+```
+
+3. **Installing ffmpeg**
+
+(Need to add the actual instructions...)
+Follow instructions [here]()
+
+# FOR TESTING
+
+.env   
+```bash
+OPENAI_API_KEY="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"
+ELEVEN_API_KEY='4fab2d5d7f5ddec9ff9422c2da442613'
+T_CLIENT_ID='h92ugsewcdxsggcjs7t0lee6uiey84'
+TWITCH_OAUTH_TOKEN='oauth:xy8beq6ubgunfjbpgvb1e7bfsb7uxu'
+TWITCH_BOT_NAME='auroraencodeai'
+TWITCH_BOT_PREFIX='!'
+TWITCH_CHANNEL = '#auroraencodeai'
+```
+
+Our Twitch account details (Will be deleted after hackathon!)
+
+```bash
+username: AuroraEncodeAI
+password: L"-?J;A6dvNV*-e
+```
+
+For app verification dm/ask Martin
+
+If you want to just put something in its chat use this [link](https://www.twitch.tv/auroraencodeai)
